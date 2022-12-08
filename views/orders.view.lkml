@@ -41,7 +41,7 @@ view: orders {
 
   measure: count {
     type: count
-    drill_fields: [id, users.last_name, users.id, users.first_name, order_items.count]
+    drill_fields: [id, users.id, users.first_name, order_items.count]
     value_format_name: percent_1
   }
 }
