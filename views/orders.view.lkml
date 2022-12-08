@@ -44,4 +44,12 @@ view: orders {
     drill_fields: [id, users.id, users.first_name, order_items.count]
     value_format_name: percent_1
   }
+
+
+  measure: countss {
+    type: number
+    drill_fields: [id, users.id, users.first_name, order_items.count]
+    value_format_name: percent_1
+    sql: ${count}/10000 ;;
+  }
 }
