@@ -79,4 +79,9 @@ view: users {
     type: count
     drill_fields: [id, last_name, first_name, orders.count]
   }
+
+  measure: ucountss {
+    type: number
+    sql: ${count} * 102020 ;;
+  }
 }
