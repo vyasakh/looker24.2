@@ -11,7 +11,7 @@ view: users {
 
   dimension: age {
     type: number
-    sql: ${TABLE}.age ;;
+    sql: ${TABLE}.age;;
   }
 
   dimension: city {
@@ -73,6 +73,13 @@ view: users {
     type: zipcode
     sql: ${TABLE}.zip ;;
     #value_format: ""
+  }
+
+  dimension: postl_area_cde {
+    type: string
+    description: "Post Code area e.g. S = Sheffield"
+    group_label: "Customer Location"
+    sql: ${TABLE}.zip ;;
   }
 
   measure: count {

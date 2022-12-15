@@ -42,7 +42,6 @@ view: orders {
   measure: count {
     type: count
     drill_fields: [id, users.id, users.first_name, order_items.count]
-    value_format_name: percent_1
   }
 
 
@@ -51,5 +50,14 @@ view: orders {
     drill_fields: [id, users.id, users.first_name, order_items.count]
     value_format_name: percent_1
     sql: ${count}/10000 ;;
+  }
+
+  dimension: group_name_link {
+    group_label: "Looker Links"
+    label: "Group Name"
+    type: string
+    description: "Link to YD Detail"
+    sql: concat('https://lyte.looker.com/dashboards/1407?Account+ID=',${TABLE}.id) ;;
+    html: <a href="{{value}}">test</a>;;
   }
 }
