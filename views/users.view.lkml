@@ -11,7 +11,7 @@ view: users {
 
   dimension: age {
     type: number
-    sql: ${TABLE}.age ;;
+    sql: ${TABLE}.age;;
   }
 
   dimension: city {
@@ -75,8 +75,20 @@ view: users {
     #value_format: ""
   }
 
+  dimension: postl_area_cde {
+    type: string
+    description: "Post Code area e.g. S = Sheffield"
+    group_label: "Customer Location"
+    sql: ${TABLE}.zip ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, last_name, first_name, orders.count]
+  }
+
+  measure: ucountss {
+    type: number
+    sql: ${count} * 102020 ;;
   }
 }

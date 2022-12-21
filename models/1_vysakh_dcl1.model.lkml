@@ -10,11 +10,6 @@ datagroup: 1_vysakh_dcl_default_datagroup {
 
 persist_with: 1_vysakh_dcl_default_datagroup
 
-map_layer: UK_postcode_NOrepetitions_topojson {
-  property_key: "Post_code"
-  file: "/models/UK_postcode_NOrepetitions_topojson.json"
-  format: topojson
-}
 
 explore: order_items {
   join: inventory_items {
