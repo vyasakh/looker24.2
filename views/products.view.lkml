@@ -44,6 +44,14 @@ view: products {
     sql: ${TABLE}.sku ;;
   }
 
+  measure: rank1 {
+    type: number
+    sql: ${TABLE}.rank;;
+
+    value_format_name: decimal_1
+    html: {{rendered_value}} sec ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, item_name, product_sheets.count, inventory_items_vijaya.count, inventory_items.count]
