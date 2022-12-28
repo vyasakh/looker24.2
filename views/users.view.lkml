@@ -78,8 +78,8 @@ view: users {
   dimension: postl_area_cde {
     type: string
     description: "Post Code area e.g. S = Sheffield"
-    group_label: "Customer Location"
     sql: ${TABLE}.zip ;;
+    map_layer_name: UK_postcode_NOrepetitions_topojson
   }
 
   measure: count {
@@ -90,5 +90,18 @@ view: users {
   measure: ucountss {
     type: number
     sql: ${count} * 102020 ;;
+  }
+
+  parameter: number_of_results {
+    type: string
+    suggest_dimension: state
+  }
+
+  dimension: name {
+    link: {
+      label: "Business Pulse By State Dashboard"
+      url: "https://gcpl2220.cloud.looker.com/dashboards/181?State={{ _filters['users.state'] | url_encode }}"
+    }
+    sql: ${TABLE}.last_name ;;
   }
 }

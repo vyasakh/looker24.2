@@ -60,4 +60,13 @@ view: orders {
     sql: concat('https://lyte.looker.com/dashboards/1407?Account+ID=',${TABLE}.id) ;;
     html: <a href="{{value}}">test</a>;;
   }
+
+
+
+
+  set: test {
+      fields: [id, group_name_link, ocountss, count, user_id, status, campaign ]
+    }
+
+
 }

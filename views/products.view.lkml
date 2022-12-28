@@ -49,9 +49,16 @@ view: products {
     drill_fields: [id, item_name, product_sheets.count, inventory_items_vijaya.count, inventory_items.count]
   }
 
-  measure: pcountss {
+
+  measure: conditional {
     type: number
-    drill_fields: [id, item_name, product_sheets.count, inventory_items_vijaya.count, inventory_items.count]
-    sql: ${count} * 102020 ;;
+    sql: IF(${brand} = 'DC', ${retail_price}, NULL) ;;
   }
+
+
+  # measure: pcountss {
+  #   type: number
+  #   drill_fields: [id, item_name, product_sheets.count, inventory_items_vijaya.count, inventory_items.count]
+  #   sql: ${count} * 102020 ;;
+  # }
 }

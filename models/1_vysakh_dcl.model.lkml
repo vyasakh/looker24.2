@@ -2,6 +2,8 @@ connection: "looker-dcl-data"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/download_test.dashboard.lookml"
+include: "/download_test11.dashboard.lookml"
 
 datagroup: 1_vysakh_dcl_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -43,6 +45,18 @@ explore: order_items {
 }
 
 explore: users {}
+
+explore: orders {
+  #fields: [ALL_FIELDS*, -orders.count_male]
+  join: order_items{
+
+    type: left_outer
+    sql_on: ${order_items.order_id} = ${orders.id} ;;
+    relationship: many_to_one
+  }
+
+
+}
 
 
 explore: inventory_items {
