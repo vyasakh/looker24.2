@@ -1,13 +1,13 @@
 view: orders {
-  sql_table_name: `orders.orders`
-    ;;
-  drill_fields: [id]
+    dimension: id {
+      description: ""
+      type: number
+    }
+    dimension: count {
+      description: ""
+      type: number
+    }
 
-  dimension: id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.id ;;
-  }
 
   dimension: campaign {
     type: string
@@ -33,15 +33,14 @@ view: orders {
     sql: ${TABLE}.status ;;
   }
 
+
   dimension: user_id {
-    type: number
-    # hidden: yes
+    type: string
     sql: ${TABLE}.user_id ;;
   }
-
-  measure: count {
-    type: count
-    drill_fields: [id, users.last_name, users.id, users.first_name, order_items.count]
-    value_format: "0.000,\" K\""
+  dimension: ids{
+    type: string
+    sql: concat(${id}," ",${id})  ;;
   }
+
 }
