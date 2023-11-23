@@ -2,7 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view.lkml"
-
+include: "/sql_runner_query.view.lkml"
 datagroup: 0_vysakh_thelook_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -11,7 +11,7 @@ datagroup: 0_vysakh_thelook_default_datagroup {
 persist_with: 0_vysakh_thelook_default_datagroup
 
 
-
+explore: sql_runner_query {}
 
 
 
