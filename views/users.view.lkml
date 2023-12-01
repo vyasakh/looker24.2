@@ -54,18 +54,28 @@ view: users {
     drill_fields: [detail*]
   }
 
+  measure: yoy_takings_lfl_pct {
+    value_format: "0.0%;(0.0%)"
+    type: number
+    sql: CASE WHEN SUM(${id}) > 2 THEN ((SUM(${age}) - SUM(${id}))/SUM(${id})) ELSE NULL END ;;
+    html: {% if yoy_takings_lfl_pct._value >= 0 %}
+          <p>{{yoy_takings_lfl_pct._value|times:100|round:1}}%</p>
+          {% else %}
+          <p style = "color: #EA4335;">({{yoy_takings_lfl_pct._value|times:-100|round:1}}%)<p>
+          {% endif %};; }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	first_name,
-	last_name,
-	events.count,
-	orders.count,
-	saralooker.count,
-	sindhu.count,
-	user_data.count
-	]
+  id,
+  first_name,
+  last_name,
+  events.count,
+  orders.count,
+  saralooker.count,
+  sindhu.count,
+  user_data.count
+  ]
   }
 
 }
