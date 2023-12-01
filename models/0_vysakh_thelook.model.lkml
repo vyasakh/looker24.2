@@ -39,8 +39,8 @@ explore: human {}
 
 
 
-
 explore: inventory_items {
+#  required_access_grants: [can_view_financial_data]
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -108,7 +108,9 @@ explore: test {}
 
 
 
-explore: users {}
+explore: users {
+
+}
 
 explore: user_data {
   join: users {

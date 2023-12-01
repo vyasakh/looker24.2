@@ -64,6 +64,17 @@ view: users {
           <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
           {% endif %};; }
 
+
+measure: ids {
+  type: count_distinct
+  sql: ${id} ;;
+  value_format_name: "eur_0"
+}
+measure: xyz {
+  type: sum
+  sql: ${id} ;;
+  value_format_name: "decimal_0"
+}
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
