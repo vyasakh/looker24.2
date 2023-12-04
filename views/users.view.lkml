@@ -64,7 +64,13 @@ view: users {
           <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
           {% endif %};; }
 
-
+  measure: yoy_takings_lfl_pcts {
+    value_format: "0.0%;(0.0%)"
+    type: number
+    sql: CASE WHEN SUM(${id}) > 2 THEN ((SUM(${age}) - SUM(${id}))/SUM(${id})) ELSE NULL END ;;
+    html:
+          <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
+          ;; }
 measure: ids {
   type: count_distinct
   sql: ${id} ;;
