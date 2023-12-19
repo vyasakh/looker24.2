@@ -54,6 +54,7 @@ view: users {
     drill_fields: [detail*]
   }
 
+<<<<<<< HEAD
 
   parameter: date_granularity {
     type: unquoted
@@ -82,6 +83,35 @@ view: users {
     {% endif %};;
   }
 
+=======
+  measure: yoy_takings_lfl_pct {
+    value_format: "0.0%;(0.0%)"
+    type: number
+    sql: CASE WHEN SUM(${id}) > 2 THEN ((SUM(${age}) - SUM(${id}))/SUM(${id})) ELSE NULL END ;;
+    html: {% if yoy_takings_lfl_pct._value >= 0 %}
+          <p>{{yoy_takings_lfl_pct._value|times:100|round:1}}%</p>
+          {% else %}
+          <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
+          {% endif %};; }
+
+  measure: yoy_takings_lfl_pcts {
+    value_format: "0.0%;(0.0%)"
+    type: number
+    sql: CASE WHEN SUM(${id}) > 2 THEN ((SUM(${age}) - SUM(${id}))/SUM(${id})) ELSE NULL END ;;
+    html:
+          <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
+          ;; }
+measure: ids {
+  type: count_distinct
+  sql: ${id} ;;
+  value_format_name: "eur_0"
+}
+measure: xyz {
+  type: sum
+  sql: ${id} ;;
+  value_format_name: "decimal_0"
+}
+>>>>>>> branch 'master' of https://github.com/vyasakh/looker23.20
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

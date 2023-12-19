@@ -2,7 +2,8 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view.lkml"
-
+include: "/sql_runner_query.view.lkml"
+include: "/Testing/Hii.view.lkml"
 datagroup: 0_vysakh_thelook_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -11,7 +12,7 @@ datagroup: 0_vysakh_thelook_default_datagroup {
 persist_with: 0_vysakh_thelook_default_datagroup
 
 
-
+explore: sql_runner_query {}
 
 
 
@@ -39,8 +40,8 @@ explore: human {}
 
 
 
-
 explore: inventory_items {
+#  required_access_grants: [can_view_financial_data]
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -108,7 +109,9 @@ explore: test {}
 
 
 
-explore: users {}
+explore: users {
+
+}
 
 explore: user_data {
   join: users {
