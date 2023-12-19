@@ -54,7 +54,7 @@ view: users {
     drill_fields: [detail*]
   }
 
-<<<<<<< HEAD
+
 
   parameter: date_granularity {
     type: unquoted
@@ -83,7 +83,7 @@ view: users {
     {% endif %};;
   }
 
-=======
+
   measure: yoy_takings_lfl_pct {
     value_format: "0.0%;(0.0%)"
     type: number
@@ -111,7 +111,6 @@ measure: xyz {
   sql: ${id} ;;
   value_format_name: "decimal_0"
 }
->>>>>>> branch 'master' of https://github.com/vyasakh/looker23.20
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
