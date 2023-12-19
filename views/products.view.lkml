@@ -31,6 +31,12 @@ view: products {
     type: number
     sql: ${TABLE}.retail_price ;;
   }
+
+  measure: sale_sum {
+    type: sum
+    sql: ${retail_price} ;;
+    value_format_name: usd_0
+  }
   dimension: sku {
     type: string
     sql: ${TABLE}.sku ;;
