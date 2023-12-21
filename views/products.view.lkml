@@ -14,6 +14,7 @@ view: products {
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+    drill_fields: [orders.status,count]
   }
   dimension: department {
     type: string
@@ -30,6 +31,11 @@ view: products {
   dimension: retail_price {
     type: number
     sql: ${TABLE}.retail_price ;;
+  }
+  measure: sum_of_retail {
+    type: sum
+    sql: ${retail_price} ;;
+    drill_fields: [order.status, count]
   }
   dimension: sku {
     type: string

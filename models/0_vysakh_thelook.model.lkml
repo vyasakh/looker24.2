@@ -2,6 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view.lkml"
+include : "/drill_test.dashboard.lookml"
 
 datagroup: 0_vysakh_thelook_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -10,7 +11,10 @@ datagroup: 0_vysakh_thelook_default_datagroup {
 
 persist_with: 0_vysakh_thelook_default_datagroup
 
-
+named_value_format: currency_format {
+  value_format: "#,##0.000"
+  strict_value_format: yes
+}
 
 
 
