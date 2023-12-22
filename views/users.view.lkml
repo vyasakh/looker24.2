@@ -14,7 +14,12 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    link: {
+      label: "City Metrics Explore"
+      url: "https://gcpl2320.cloud.looker.com/explore/0_vysakh_thelook/users?fields=users.city,orders.count,users.count&f[users.city]=&sorts=orders.count+desc&limit=500"
+    }
   }
+
   dimension: country {
     type: string
     map_layer_name: countries

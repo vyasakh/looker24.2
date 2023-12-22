@@ -38,5 +38,9 @@ view: products {
   measure: count {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
+    link: {
+      label: "Explore Top 1000 Results"
+      url: "{{ link }}&limit=1000"
+    }
   }
 }
