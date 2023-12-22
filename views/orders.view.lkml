@@ -35,22 +35,11 @@ view: orders {
     }
   }
 
-  dimension: date1 {
-    label_from_parameter: test
-    label: "liquid"
-    sql:
-    {% if test._parameter_value == 'day' %}
-      ${created_date}
-    {% elsif test._parameter_value == 'month' %}
-      ${created_month}
-    {% else %}
-      ${created_date}
-    {% endif %};;
-  }
   measure: count {
     type: count
     drill_fields: [detail*]
   }
+
 
   dimension: accent {
     type: string
