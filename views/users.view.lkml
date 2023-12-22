@@ -59,6 +59,36 @@ view: users {
     drill_fields: [detail*]
   }
 
+
+
+  parameter: date_granularity {
+    type: unquoted
+    default_value: "day"
+    allowed_value: {
+      label: "Break down by Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Break down by Month"
+      value: "month"
+    }
+  }
+
+  dimension: date1 {
+    label_from_parameter: date_granularity
+    label: "dummy"
+    type: string
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+      ${created_date}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      ${created_month}
+    {% else %}
+      ${created_date}
+    {% endif %};;
+  }
+
+
   measure: yoy_takings_lfl_pct {
     value_format: "0.0%;(0.0%)"
     type: number
@@ -69,7 +99,13 @@ view: users {
           <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
           {% endif %};; }
 
-
+  measure: yoy_takings_lfl_pcts {
+    value_format: "0.0%;(0.0%)"
+    type: number
+    sql: CASE WHEN SUM(${id}) > 2 THEN ((SUM(${age}) - SUM(${id}))/SUM(${id})) ELSE NULL END ;;
+    html:
+          <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
+          ;; }
 measure: ids {
   type: count_distinct
   sql: ${id} ;;

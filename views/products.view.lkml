@@ -15,6 +15,7 @@ view: products {
     type: string
     sql: ${TABLE}.category ;;
   }
+
   dimension: department {
     type: string
     sql: ${TABLE}.department ;;
@@ -30,6 +31,12 @@ view: products {
   dimension: retail_price {
     type: number
     sql: ${TABLE}.retail_price ;;
+  }
+
+  measure: sale_sum {
+    type: sum
+    sql: ${retail_price} ;;
+    value_format_name: usd_0
   }
   dimension: sku {
     type: string
