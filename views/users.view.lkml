@@ -14,7 +14,12 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    link: {
+      label: "City Metrics Explore"
+      url: "https://gcpl2320.cloud.looker.com/explore/0_vysakh_thelook/users?fields=users.city,orders.count,users.count&f[users.city]=&sorts=orders.count+desc&limit=500"
+    }
   }
+
   dimension: country {
     type: string
     map_layer_name: countries
@@ -54,18 +59,75 @@ view: users {
     drill_fields: [detail*]
   }
 
+
+
+  parameter: date_granularity {
+    type: unquoted
+    default_value: "day"
+    allowed_value: {
+      label: "Break down by Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Break down by Month"
+      value: "month"
+    }
+  }
+
+  dimension: date1 {
+    label_from_parameter: date_granularity
+    label: "dummy"
+    type: string
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+      ${created_date}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      ${created_month}
+    {% else %}
+      ${created_date}
+    {% endif %};;
+  }
+
+
+  measure: yoy_takings_lfl_pct {
+    value_format: "0.0%;(0.0%)"
+    type: number
+    sql: CASE WHEN SUM(${id}) > 2 THEN ((SUM(${age}) - SUM(${id}))/SUM(${id})) ELSE NULL END ;;
+    html: {% if yoy_takings_lfl_pct._value >= 0 %}
+          <p>{{yoy_takings_lfl_pct._value|times:100|round:1}}%</p>
+          {% else %}
+          <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
+          {% endif %};; }
+
+  measure: yoy_takings_lfl_pcts {
+    value_format: "0.0%;(0.0%)"
+    type: number
+    sql: CASE WHEN SUM(${id}) > 2 THEN ((SUM(${age}) - SUM(${id}))/SUM(${id})) ELSE NULL END ;;
+    html:
+          <p style = "color: red">({{yoy_takings_lfl_pct._value |times:-100|round:1}}%)<p>
+          ;; }
+measure: ids {
+  type: count_distinct
+  sql: ${id} ;;
+  value_format_name: "eur_0"
+}
+measure: xyz {
+  type: sum
+  sql: ${id} ;;
+  value_format_name: "decimal_0"
+}
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	first_name,
-	last_name,
-	events.count,
-	orders.count,
-	saralooker.count,
-	sindhu.count,
-	user_data.count
-	]
+  id,
+  first_name,
+  last_name,
+  events.count,
+  orders.count,
+  saralooker.count,
+  sindhu.count,
+  user_data.count
+  ]
   }
 
 }

@@ -9,7 +9,7 @@ view: orders {
   }
   dimension_group: created {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter, year, week_of_year]
     sql: ${TABLE}.created_at ;;
   }
   dimension: status {
@@ -22,9 +22,63 @@ view: orders {
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
+
+  parameter: test {
+    type: unquoted
+    allowed_value: {
+      label: "Daywise data"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Monthwise data"
+      value: "month"
+    }
+  }
+
+  dimension: date1 {
+    label_from_parameter: test
+    label: "liquid"
+    sql:
+    {% if test._parameter_value == 'day' %}
+      ${created_date}
+    {% elsif test._parameter_value == 'month' %}
+      ${created_month}
+    {% else %}
+      ${created_date}
+    {% endif %};;
+  }
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+  dimension: test {
+    type: string
+    sql: 'test' ;;
+  }
+  dimension: accent {
+    type: string
+    sql: 'Festive | Tải menu' ;;
+  }
+  measure: condition {
+    type: number
+    sql: case when ${status}= "COMPLETED" Then "1"
+    else "0"
+    end;;
+  }
+
+  measure: testmedian {
+    type: sum
+    sql: ${id} ;;
+  }
+
+  measure: order_count {
+    type: count_distinct
+    drill_fields: [created_year,order_count, users.gender]
+    link: {
+      label: "drill by pivot"
+      url: "{{link}}&pivots=orders.status"
+    }
+    sql: ${id} ;;
   }
 
   # ----- Sets of fields for drilling ------

@@ -16,6 +16,7 @@ view: products {
     type: string
     sql: ${TABLE}.category ;;
   }
+
   dimension: department {
     type: string
     sql: ${TABLE}.department ;;
@@ -32,6 +33,12 @@ view: products {
     type: number
     sql: ${TABLE}.retail_price ;;
   }
+
+  measure: sale_sum {
+    type: sum
+    sql: ${retail_price} ;;
+    value_format_name: usd_0
+  }
   dimension: sku {
     type: string
     sql: ${TABLE}.sku ;;
@@ -39,5 +46,9 @@ view: products {
   measure: count {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
+    link: {
+      label: "Explore Top 1000 Results"
+      url: "{{ link }}&limit=1000"
+    }
   }
 }
