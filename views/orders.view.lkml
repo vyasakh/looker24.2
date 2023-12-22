@@ -51,10 +51,7 @@ view: orders {
     type: count
     drill_fields: [detail*]
   }
-  dimension: test {
-    type: string
-    sql: 'test' ;;
-  }
+
   dimension: accent {
     type: string
     sql: 'Festive | Tải menu' ;;
