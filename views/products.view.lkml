@@ -7,6 +7,7 @@ view: products {
     type: number
     sql: ${TABLE}.id ;;
   }
+
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
@@ -45,5 +46,9 @@ view: products {
   measure: count {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
+    link: {
+      label: "Explore Top 1000 Results"
+      url: "{{ link }}&limit=1000"
+    }
   }
 }

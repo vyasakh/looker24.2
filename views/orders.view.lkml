@@ -9,13 +9,14 @@ view: orders {
   }
   dimension_group: created {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter, year, week_of_year]
     sql: ${TABLE}.created_at ;;
   }
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
   }
+
   dimension: user_id {
     type: number
     # hidden: yes
@@ -48,21 +49,21 @@ view: orders {
     }
   }
 
-  dimension: date1 {
-    label_from_parameter: test
-    label: "liquid"
-    sql:
-    {% if test._parameter_value == 'day' %}
-      ${created_date}
-    {% elsif test._parameter_value == 'month' %}
-      ${created_month}
-    {% else %}
-      ${created_date}
-    {% endif %};;
-  }
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+
+  dimension: accent {
+    type: string
+    sql: 'Festive | Tải menu' ;;
+  }
+  measure: condition {
+    type: number
+    sql: case when ${status}= "COMPLETED" Then "1"
+    else "0"
+    end;;
   }
 
   measure: testmedian {

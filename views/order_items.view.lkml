@@ -32,10 +32,13 @@ view: order_items {
   }
   dimension: sale_price {
     type: number
+    value_format_name: eur_0
+    drill_fields: [phones, phone]
     sql: ${TABLE}.sale_price ;;
   }
+
   measure: count {
     type: count
-    drill_fields: [id, orders.id, inventory_items.id]
+
   }
 }
