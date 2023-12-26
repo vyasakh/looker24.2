@@ -53,16 +53,16 @@ view: orders {
     type: count
     drill_fields: [detail*]
   }
-  dimension: testtt {
-    type: number
-    # hidden: yes
-    sql: ${TABLE}.user_id * 0.007;;
-  }
-  measure: testwithmeasure{
-    type: number
-    # hidden: yes
-    sql: ${TABLE}.user_id * 0.007;;
-  }
+  # dimension: testtt1 {
+  #   type: number
+  #   # hidden: yes
+  #   sql: ${TABLE}.user_id * 0.007;;
+  # }
+  # measure: testwithmeasure2{
+  #   type: number
+  #   # hidden: yes
+  #   sql: ${TABLE}.user_id * 0.007;;
+  # }
 
 
 
