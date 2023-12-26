@@ -22,6 +22,20 @@ view: orders {
     sql: ${TABLE}.user_id ;;
   }
 
+  dimension: testtt {
+    type: number
+    # hidden: yes
+    sql: ${TABLE}.user_id * 0.007;;
+  }
+  measure: testwithmeasure{
+    type: number
+    # hidden: yes
+    sql: ${TABLE}.user_id * 0.007;;
+  }
+
+
+
+
   parameter: test {
     type: unquoted
     allowed_value: {
