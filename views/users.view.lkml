@@ -88,6 +88,16 @@ view: users {
     {% endif %};;
   }
 
+  dimension: full_name {
+    type: string
+    sql: concat(${first_name},${last_name} ;;
+  }
+
+  dimension: length {
+    type: number
+    sql: length(${full_name}) ;;
+  }
+
 
   measure: yoy_takings_lfl_pct {
     value_format: "0.0%;(0.0%)"
