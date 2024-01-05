@@ -57,6 +57,16 @@ explore: orders {
 }
 
 explore: order_items {
+
+  always_filter: {
+    filters: [orders.created_date: "1 week ago for 1 week"]
+  }
+#   conditionally_filter: {
+#     filters: {
+#       field: orders.created_date
+#       value: "1 weeks ago for 1 week"
+#     }
+# }
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
