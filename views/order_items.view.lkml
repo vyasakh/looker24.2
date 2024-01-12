@@ -6,6 +6,7 @@ view: order_items {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    #drill_fields: [sale_price, order_id, count]
   }
   dimension: inventory_item_id {
     type: number
@@ -34,6 +35,7 @@ view: order_items {
     type: number
     sql: ${TABLE}.sale_price ;;
   }
+
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
