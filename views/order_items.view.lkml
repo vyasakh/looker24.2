@@ -32,7 +32,7 @@ view: order_items {
   }
   dimension: sale_price {
     type: number
-    value_format_name: eur_0
+    value_format: "$0.00"
     drill_fields: [phones, phone]
     sql: ${TABLE}.sale_price ;;
   }
