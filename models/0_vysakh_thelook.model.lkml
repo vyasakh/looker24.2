@@ -1,5 +1,5 @@
 connection: "thelook"
-
+#this is param
 # include all the views
 include: "/views/**/*.view.lkml"
 include: "/sql_runner_query.view.lkml"
