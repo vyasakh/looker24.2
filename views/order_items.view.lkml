@@ -27,7 +27,7 @@ view: order_items {
   }
   dimension_group: returned {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter, year, day_of_week]
     sql: ${TABLE}.returned_at ;;
   }
   dimension: sale_price {
@@ -40,5 +40,11 @@ view: order_items {
   measure: count {
     type: count
 
+  }
+  measure: percentile_ {
+    type: percentile
+    percentile: 95
+    sql: ${sale_price} ;;
+    value_format: "0.##"
   }
 }

@@ -49,6 +49,7 @@ view: users {
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
+    suggest_persist_for: "0 seconds"
   }
   dimension: zip {
     type: zipcode

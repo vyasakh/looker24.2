@@ -16,7 +16,12 @@ view: products {
     type: string
     sql: ${TABLE}.category ;;
   }
+dimension: test_url {
+  type: string
+  sql: ${TABLE} ;;
 
+
+}
   dimension: department {
     type: string
     sql: ${TABLE}.department ;;
@@ -50,5 +55,11 @@ view: products {
       label: "Explore Top 1000 Results"
       url: "{{ link }}&limit=1000"
     }
+
   }
+  measure: retails {
+    type: number
+    sql: IF(sum(${retail_price}) > 0, sum(${retail_price})/1000, 0);;
+  }
+
 }

@@ -4,6 +4,8 @@ connection: "thelook"
 include: "/views/**/*.view.lkml"
 include: "/sql_runner_query.view.lkml"
 include: "/Testing/Hii.view.lkml"
+include: "/views/test_join.view.lkml"
+include: "/test_dash.dashboard.lookml"
 datagroup: 0_vysakh_thelook_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -16,6 +18,8 @@ explore: sql_runner_query {}
 ####
 
 explore: dept {}
+
+
 
 explore: employees {}
 
