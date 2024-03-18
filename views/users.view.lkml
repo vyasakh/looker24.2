@@ -11,6 +11,11 @@ view: users {
     type: number
     sql: ${TABLE}.age ;;
   }
+  dimension: duplicates{
+    type:  string
+    sql: "Hello";;
+  }
+
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;

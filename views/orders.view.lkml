@@ -15,7 +15,16 @@ view: orders {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    #link: {
+     # label: "testing"
+      #url: "https://gcpl2320.cloud.looker.com/dashboards/420?Status=CANCELLED%2CCOMPLETED%2CPENDING"
+    #}
   }
+
+dimension: duplicates {
+  type: string
+  sql: "Hello" ;;
+}
 
   dimension: user_id {
     type: number
