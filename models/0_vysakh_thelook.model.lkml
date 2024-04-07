@@ -58,9 +58,9 @@ explore: orders {
 
 explore: order_items {
 
-  always_filter: {
-    filters: [orders.created_date: "1 week ago for 1 week"]
-  }
+  # always_filter: {
+  #   filters: [orders.created_date: "1 week ago for 1 week"]
+  # }
 #   conditionally_filter: {
 #     filters: {
 #       field: orders.created_date
