@@ -99,11 +99,7 @@ explore: person {}
 explore: persons {}
 
 explore: products {
-  access_filter: {
-    field: products.brand
-    user_attribute: brand
 
-  }
  }
 explore: salary {
   join: dept {
