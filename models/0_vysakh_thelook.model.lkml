@@ -98,9 +98,13 @@ explore: person {}
 
 explore: persons {}
 
+explore: products {
+  access_filter: {
+    field: products.brand
+    user_attribute: brand
 
-explore: products {}
-
+  }
+ }
 explore: salary {
   join: dept {
     type: left_outer
