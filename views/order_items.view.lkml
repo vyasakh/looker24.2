@@ -41,4 +41,9 @@ view: order_items {
     type: count
 
   }
+
+  measure: check {
+    type: count
+    filters: [sale_price: "<0"]
+  }
 }
