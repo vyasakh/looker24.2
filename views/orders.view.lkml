@@ -13,6 +13,7 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
   dimension: status {
+    required_access_grants: [alert]
     type: string
     sql: ${TABLE}.status ;;
   }

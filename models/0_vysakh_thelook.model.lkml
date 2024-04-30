@@ -13,6 +13,12 @@ persist_with: 0_vysakh_thelook_default_datagroup
 
 explore: sql_runner_query {}
 
+
+access_grant: alert {
+  user_attribute: status
+  allowed_values: [ "COMPLETED"]
+}
+
 ####
 
 explore: dept {}
