@@ -7,6 +7,13 @@ view: users {
     type: number
     sql: ${TABLE}.id ;;
   }
+
+  dimension: id_total{
+  type: number
+  sql: case when ${id} is not null then 1 else 0 end;;
+
+  }
+
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;
@@ -45,9 +52,40 @@ view: users {
     type: string
     sql: ${TABLE}.state ;;
   }
+  dimension: show_my_dimension_filter_branch_name {
+
+    # html: {% if _filters['age'] IS NOT "NULL"] %} 1 {% else %} 0 {% endif %};;
+
+    type: number
+
+    sql: 'this does nothing' ;;
+
+  }
+
+  # dimension: test2_1 {
+  #   type: number
+  #   html: {% if (${users.show_my_dimension_filter_branch_name}= 1, ${testmaxvalue}), 0) ;;
+  #   sql: 0 ;;
+  # }
+
+  dimension: testing_test2 {
+  type: number
+  html: {{show_my_dimension_filter_branch_name._rendered_value}};;
+    sql: 0 ;;
+
+}
+
+
   dimension: zip {
     type: zipcode
     sql: ${TABLE}.zip ;;
+  }
+
+  measure: flag_b{
+  type:sum
+  value_format: "0"
+  sql: ${id_total} ;;
+
   }
   measure: count {
     type: count

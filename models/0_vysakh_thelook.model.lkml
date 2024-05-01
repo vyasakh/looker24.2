@@ -10,6 +10,12 @@ datagroup: 0_vysakh_thelook_default_datagroup {
 
 persist_with: 0_vysakh_thelook_default_datagroup
 
+#   access_grant: alert_test {
+#   user_attribute: status
+#   allowed_values: [ "COMPLETED"]
+# }
+
+
 
 explore: sql_runner_query {}
 
@@ -49,6 +55,9 @@ explore: inventory_items {
 }
 
 explore: orders {
+  # always_filter: {
+  #   filters: [created_date: "7 days"]
+  # }
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
