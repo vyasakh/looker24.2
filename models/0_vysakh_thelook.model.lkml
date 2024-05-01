@@ -3,11 +3,11 @@ connection: "thelook"
 # include all the views
 include: "/views/**/*.view.lkml"
 include: "/sql_runner_query.view.lkml"
+include: "/Testing/Hii.view.lkml"
 datagroup: 0_vysakh_thelook_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
-
 persist_with: 0_vysakh_thelook_default_datagroup
 
 #   access_grant: alert_test {
@@ -19,7 +19,7 @@ persist_with: 0_vysakh_thelook_default_datagroup
 
 explore: sql_runner_query {}
 
-
+####
 
 explore: dept {}
 
@@ -66,6 +66,16 @@ explore: orders {
 }
 
 explore: order_items {
+
+  # always_filter: {
+  #   filters: [orders.created_date: "1 week ago for 1 week"]
+  # }
+#   conditionally_filter: {
+#     filters: {
+#       field: orders.created_date
+#       value: "1 weeks ago for 1 week"
+#     }
+# }
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
@@ -97,9 +107,9 @@ explore: person {}
 
 explore: persons {}
 
+explore: products {
 
-explore: products {}
-
+ }
 explore: salary {
   join: dept {
     type: left_outer

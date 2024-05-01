@@ -21,7 +21,12 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    link: {
+      label: "City Metrics Explore"
+      url: "https://gcpl2320.cloud.looker.com/explore/0_vysakh_thelook/users?fields=users.city,orders.count,users.count&f[users.city]=&sorts=orders.count+desc&limit=500"
+    }
   }
+
   dimension: country {
     type: string
     map_layer_name: countries
@@ -91,6 +96,46 @@ view: users {
     type: count
     drill_fields: [detail*]
   }
+
+
+
+  parameter: date_granularity {
+    type: unquoted
+    default_value: "day"
+    allowed_value: {
+      label: "Break down by Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Break down by Month"
+      value: "month"
+    }
+  }
+
+  dimension: date1 {
+    label_from_parameter: date_granularity
+    label: "dummy"
+    type: string
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+      ${created_date}
+    {% elsif date_granularity._parameter_value == 'month' %}
+      ${created_month}
+    {% else %}
+      ${created_date}
+    {% endif %};;
+  }
+
+  dimension: full_name {
+    type: string
+    sql: concat(${first_name},${last_name}) ;;
+  }
+
+  dimension: length {
+    type: number
+    sql: length(${full_name}) ;;
+  }
+
 
   measure: yoy_takings_lfl_pct {
     value_format: "0.0%;(0.0%)"

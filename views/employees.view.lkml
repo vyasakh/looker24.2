@@ -17,4 +17,19 @@ view: employees {
     type: count
     drill_fields: [name]
   }
+  dimension: conversation_details {
+    sql: "View SMS Conversation" ;;
+    html:
+      {% if value == 'View SMS Conversation' %}}
+        <a target="_blank" href="/embed/dashboards/322?Name={{['employees.name']|replace: '&#39;', "'"|replace: '&amp;', '&'| url_encode}}">{{value}}</a>
+      {% endif %}
+    ;;
+  }
+  dimension: more_details {
+    sql: "Click here for more details" ;;
+    link: {
+      label: "Conversation View"
+      url: "/embed/dashboards/323?Name={{_filters['employees.name'] | url_encode}}"
+    }
+  }
 }

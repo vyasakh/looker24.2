@@ -9,7 +9,7 @@ view: orders {
   }
   dimension_group: created {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter, year, week_of_year]
     sql: ${TABLE}.created_at ;;
   }
   dimension: status {
@@ -17,14 +17,65 @@ view: orders {
     type: string
     sql: ${TABLE}.status ;;
   }
+
   dimension: user_id {
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
+
+  dimension: testtt {
+    type: number
+    # hidden: yes
+    sql: ${TABLE}.user_id * 0.007;;
+  }
+  measure: testwithmeasure{
+    type: number
+    # hidden: yes
+    sql: ${TABLE}.user_id * 0.007;;
+  }
+
+
+
+
+  parameter: test {
+    type: unquoted
+    allowed_value: {
+      label: "Daywise data"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Monthwise data"
+      value: "month"
+    }
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+  # dimension: testtt1 {
+  #   type: number
+  #   # hidden: yes
+  #   sql: ${TABLE}.user_id * 0.007;;
+  # }
+  # measure: testwithmeasure2{
+  #   type: number
+  #   # hidden: yes
+  #   sql: ${TABLE}.user_id * 0.007;;
+  # }
+
+
+
+  dimension: accent {
+    type: string
+    sql: 'Festive | Tải menu' ;;
+  }
+  measure: condition {
+    type: number
+    sql: case when ${status}= "COMPLETED" Then "1"
+    else "0"
+    end;;
   }
 
   measure: testmedian {
