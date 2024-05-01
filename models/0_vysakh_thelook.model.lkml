@@ -10,10 +10,10 @@ datagroup: 0_vysakh_thelook_default_datagroup {
 }
 persist_with: 0_vysakh_thelook_default_datagroup
 
-#   access_grant: alert_test {
-#   user_attribute: status
-#   allowed_values: [ "COMPLETED"]
-# }
+  access_grant: alert_test {
+  user_attribute: status
+  allowed_values: [ "COMPLETED"]
+ }
 
 
 

@@ -1,4 +1,4 @@
-connection: "vijaya_bq_test"
+connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view.lkml"
